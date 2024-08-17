@@ -3,6 +3,9 @@ services:
   homeassistant:
     container_name: homeassistant
     image: "ghcr.io/home-assistant/home-assistant:stable"
+    networks:
+      default:
+        ipv4_address: 192.168.1.200
     volumes:
       - homeassistant-config:/config
       - /etc/localtime:/etc/localtime:ro
@@ -15,3 +18,7 @@ services:
 volumes:
   homeassistant-config:
 
+networks:
+  default:
+    external:
+      name: macvlan
